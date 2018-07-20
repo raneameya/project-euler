@@ -52,7 +52,7 @@ is.palindrome <- function(vec) {
   return(all(vec == rev(vec)))
 }
 
-n <- 1:9L
+n <- 1:6L
 dbpSum <- 0L
 system.time(for (i in n){
   p <- matrix2dec(palindromes(i))
