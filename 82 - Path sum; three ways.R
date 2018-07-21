@@ -15,6 +15,7 @@ minPath <- function(m) {
   if (ncol(m) != nrow(m)) {
     stop('\'m\' must be a square matrix')
   }
+  n <- ncol(m)
   for (j in (n - 1L):1L) {
     currCol <- m[, j]
     rightCol <- m[, j + 1L]
