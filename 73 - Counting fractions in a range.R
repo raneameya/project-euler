@@ -5,17 +5,7 @@
 # `f(n) = nfrac(n) + f(n - 1)`, where `nfrac(n)` is the contribution 
 # by n.
 
-sieve <- function(n) {
-  a <- c(2:n)
-  l <- 2
-  r <- c()
-  while (l*l <= n) {
-    r <- c(r, a[1])
-    a <- a[-(which(a %% l ==0))]
-    l <- a[1]
-  }
-  c(r, a)
-}
+library(projecteuler) # For the sieve function
 
 nfrac <- function(n, sieveN) {
   cfMatrix <- matrix(data = 1L, ncol = n, nrow = n)
