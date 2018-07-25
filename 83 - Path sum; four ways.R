@@ -86,10 +86,7 @@ system.time(minPath(m)[1, 1])
 #     for (j in 1L:n) {
 #       for (i in 1L:n) {
 #         # Update shortest path for corner cells
-#         if ((i == n) & (j == n)) {
-#           # Update shortest path for origin cell
-#           iter1[i, j] <- iter0[i, j]
-#         } else if ((i == 1L) & (j == n)) {
+#         if ((i == 1L) & (j == n)) {
 #           iter1[i, j] <- m[i, j] + min(
 #             iter0[i, j - 1L], iter0[i + 1L, j]
 #           )
