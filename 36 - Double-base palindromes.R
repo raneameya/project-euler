@@ -1,3 +1,5 @@
+library(projecteuler) # For dec2bin function
+
 # Function to generate palindromes in base 10, given number of digits.
 # Note that if n = 4, it will generate all palindromes between 1000 
 # and 9999, not between 1 and 9999 as can be expected.
@@ -17,30 +19,10 @@ palindromes <- function(n) {
   }
 }
 
-# Function to generate the binary representation of a 
-# positive integer. Note that converting the recurrence 
-dec2bin <- function(x) {
-  dec2binInternal <- function(x) {
-    log2 <- log(x, 2)
-    if (x == 1) {
-      return(1)
-    } else if (log2%%1 == 0) {
-      return(log2 + 1)
-    } else {
-      power <- floor(log2)
-      return(c(power + 1, dec2binInternal(x%%(2^power))))
-    }
-  }
-  ones <- dec2binInternal(x)
-  out <- numeric(length = max(ones))
-  out[ones] <- 1L
-  return(rev(out))
-}
-
 # Function to convert matrix of digits to number in base 10.
 matrix2dec <- function(m) {
   if (!is.matrix(m) | !is.integer(m)) {
-    stop('\'m\' must be an integer matrix.')
+    stop('m must be an integer matrix.')
   }
   n <- matrix(10L**((ncol(m) - 1L):0L), ncol = 1L)
   return(m%*%n)
@@ -54,11 +36,13 @@ is.palindrome <- function(vec) {
 
 n <- 1:6L
 dbpSum <- 0L
-system.time(for (i in n){
+system.time(for (i in n) {
   p <- matrix2dec(palindromes(i))
   b <- sapply(p, dec2bin)
   dbp <- sapply(b, is.palindrome)
   dbpSum <- dbpSum + sum(p[dbp])
 })
+# user  system elapsed 
+# 0.06    0.00    0.07 
 dbpSum
 # 872187L
